@@ -1,0 +1,80 @@
+body {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	background-color: #AAD4FF;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+ 	font-weight: 300;
+}
+
+/*h2 {
+	padding: 0;
+	margin: 0;
+}*/
+
+#container {
+	padding-top: 15px;
+	width: 100%;
+	text-align: center;
+}
+
+#widthless {
+	margin: 0 auto;
+}
+
+#header {
+	width: 50%;
+	padding: 1px 20px 1px 20px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #a8d67a;
+	text-align: left;
+}
+
+#main {
+	width: 50%;
+	padding: 20px 20px 12px 20px;
+	margin-left: auto;
+	margin-right: auto;
+	border-top: 1px solid #555555;
+	background-color: #ffffff;
+	text-align: center;
+}
+
+#table_label {
+	font-size: 16px;
+	font-weight: bold;
+	color: #333333;
+	
+}
+
+#override {
+	text-align: left;
+	width: 50%;
+	margin: 0 auto;
+}
+
+/* Process Table Stuff */
+
+#process_table_container {
+	margin: 0 0 24px 0;
+}
+
+#process_table {
+	margin: 24px 0 24px 0;
+	text-align: center;
+}
+
+#process_table .pt_frame_label {
+	padding-right: 12px;
+	color: #BBBBBB;
+	font-size: 14px;
+}
+
+#process_table .pt_frame {
+	border: 1px solid #333333;
+	min-width: 100px;
+	height: 40px;
+	color: #444444;
+	font-size: 14px;
+}

@@ -1,0 +1,68 @@
+#{extends 'main.html' /}
+#{set title:'Wolf Memory Management Simulation' /}
+
+ <script type="text/javascript">
+	/*$.ajaxSetup ({  
+		cache: false ;
+	});*/
+		
+	// http://www.blindmotion.com/2009/05/example-uploadify-using-forms/
+	// http://www.webdeveloperjuice.com/2010/02/13/7-trusted-ajax-file-upload-plugins-using-jquery/
+	
+	/*
+	// BELOW WORKS!
+	
+	$(document).ready(function(){
+		$("#submitFile").submit(function(event) {
+		    // stop form from submitting normally
+		    event.preventDefault(); 
+	
+		    // Send the data using post and put the results in a div
+		    $.post("@{ProcessController.uploadFile()}", function(data) {
+		    	   alert("Data Loaded: " + data);
+		    });
+		});
+	});*/
+</script>
+
+<script type="text/javascript" src="/public/javascripts/jquery.form.js"></script>
+
+<script type="text/javascript"> 
+	// wait for the DOM to be loaded 
+	$(document).ready(function() {
+		$('#submit_file').ajaxForm({
+			target: '#process_table_container',
+			/*success: function() { 
+				//alert("File uploaded!"); 
+				$('#process_table_container').html("Processed file ...");
+			}*/
+			resetForm: true,
+			success: showResponse
+		}); 
+	}); 
+	
+	function showResponse(responseText, statusText, xhr, $form)  { 	 
+	    //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.'); 
+	    
+	    // fade in the div with fancy jquery
+	} 
+</script> 
+
+<div id="container">
+	<div id="header">
+		<h2>Linux Memory Management Simulation</h2f>
+	</div>
+	<div id="main">
+		<span id="table_label">Physical Memory</span>
+		<div id="process_table_container" align="center">
+			<!--  Create a "Next" button that steps through the lines of the simulation! -->
+		</div>
+		<p>
+			#{form @ProcessController.uploadFile(), id:'submit_file', enctype:'multipart/form-data'}
+			    <input type="text" name="title" />
+			    <input type="file" id="file" name="file" />
+			    <input type="submit" value="Go" />
+			#{/}
+		</p>
+	</div>
+</div>
