@@ -1,12 +1,15 @@
 package models.process;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import play.db.jpa.Model;
 import play.libs.IO;
@@ -15,38 +18,48 @@ import play.libs.IO;
 @Entity
 public class ProcessFile extends Model {
 	
-	// All the processes
-	@OneToMany
-	public Map<Integer, Process> processes = new TreeMap<Integer, Process>();
+	@Id
+	public int id;
+	
+	//@OneToMany
+	public TreeMap<Integer, Process> processes = new TreeMap<Integer, Process>();
 	
 	// List of lines in the file
-	public List<String> lines;
+	public ArrayList<String> lines;
 	
 	// Current line that is being parsed
 	public int currentLine = 0;
 	
+	// The types of events that a process can do
+	public enum EventType {Arrive, Exit}
+	
 	public ProcessFile(final File file) {
+		this.lines = (ArrayList) IO.readLines(file);
+		
+		System.out.println("Processin file");
+		
+		// createFrames();
+		createProcesses();
+		// createProcessStates();
+		
 		// Parse all of the lines
 		//		 Process an individual line
 		//				Create a ProcessTableState and add it to a collection of states in ProcessPageTable
-		
-		this.lines = IO.readLines(file);
-		
-		System.out.println("WHELHRLKEWJRLKEWJR");
-		
-		createProcesses();
-		// createProcessStates();
 	}
 	
 	public void createProcesses() {
 		for(String line : lines) {
-			Integer[] chunks = splitDataToInts(line);
-			Integer id = chunks[0];
-			Integer textSize = chunks[1];
-			Integer dataSize = chunks[2];
 			
-			if(!processes.containsKey(id))
-				processes.put(id, new Process(id, textSize, dataSize));
+			// 3 Chunks in a line = process memory info
+			if(splitData(line).length == 3) {
+				Integer[] chunks = splitDataToInts(line);
+				Integer id = chunks[0];
+				Integer textSize = chunks[1];
+				Integer dataSize = chunks[2];
+				
+				if(!processes.containsKey(id))
+					processes.put(id, new Process(id, textSize, dataSize));
+			}
 		}
 		
 		System.out.println("Processes: " + processes.size());
@@ -78,24 +91,23 @@ public class ProcessFile extends Model {
 		// create a ProcessPageTableState
 	}
 	
-	// True = Enter, False = Exit
-	/*private boolean determineEvent(final String line) throws Exception {
+	public EventType determineEvent(final String line) throws Exception {
 		final String[] chunks = splitData(line);
 		final int chunkSize = chunks.length;
 			
 		if(chunkSize == 3)
-			return true;
+			return EventType.Arrive;
 		else if(chunkSize == 2)
-			return false;
+			return EventType.Exit;
 		else
 			throw new Exception("File format error");
-	}*/
+	}
 		
-	private String[] splitData(final String line) {
+	public String[] splitData(final String line) {
 		return line.split(" ");
 	}
 		
-	private Integer[] splitDataToInts(final String line) {
+	public Integer[] splitDataToInts(final String line) {
 		String[] chunks = splitData(line);
 		Integer[] intChunks = new Integer[chunks.length];
 			

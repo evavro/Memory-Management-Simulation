@@ -7,6 +7,7 @@ import javax.persistence.Transient;
 
 import models.pages.DataPage;
 import models.pages.Page;
+import models.pages.ProcessPageTable;
 import models.pages.TextPage;
 
 import play.db.jpa.Model;
@@ -14,8 +15,8 @@ import play.db.jpa.Model;
 @Entity
 public class Process extends Model {
 	
-	// Process ID
-	public int id;
+	// Process ID provided by the source file
+	public int procId;
 	
 	// Size of text segment (in bytes) provided by the source file
 	public int textSize;
@@ -30,11 +31,11 @@ public class Process extends Model {
 	@Transient
 	final int PAGE_SIZE = 512;
 	
-	public Process(final int id,
+	public Process(final int procId,
 				   final int textSize,
 				   final int dataSize) {
 		
-		this.id = id;
+		this.procId = procId;
 		this.textSize = textSize;
 		this.dataSize = dataSize;
 		this.table = new ProcessPageTable(this);
@@ -44,7 +45,6 @@ public class Process extends Model {
 	
 	public void setTextPages() {
 		final int numText = determineNumPages(textSize);
-		int count = 0;
 		
 		for(int i = 0; i < numText; i++)
 			new TextPage(i).save();
@@ -52,7 +52,6 @@ public class Process extends Model {
 	
 	public void setDataPages() {
 		final int numData = determineNumPages(dataSize);
-		int count = 0;
 		
 		for(int i = 0; i < numData; i++)
 			new DataPage(i).save();
@@ -62,7 +61,12 @@ public class Process extends Model {
 		final int numText = determineNumPages(textSize);
 		final int numData = determineNumPages(dataSize);
 		
-		System.out.println(String.format("Number text pages: %s, Number data pages: %s", numText, numData));
+		System.out.println(String.format("Process %s: Number text pages: %s, Number data pages: %s", procId, numText, numData));
+		
+		setDataPages();
+		setTextPages();
+		
+		System.out.println(String.format("Process %s - Text pages: %s, Data pages: %s", procId, TextPage.count(), DataPage.count()));
 	}
 	
 	public int determineNumTextPages() {
@@ -74,8 +78,8 @@ public class Process extends Model {
 	}
 
 	public int determineNumPages(final int size) {
-		int roughDivide = size / PAGE_SIZE;
-		int mod = size % PAGE_SIZE;
+		final int roughDivide = size / PAGE_SIZE;
+		final int mod = size % PAGE_SIZE;
 		
 		return mod == 0 ? roughDivide : roughDivide + 1;
 	}

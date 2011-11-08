@@ -10,16 +10,9 @@ import play.db.jpa.Model;
 public class Frame extends Model {
 	
 	// NOT the entity id
-	public int id;
+	public int frameId;
 	
-	@ManyToOne
-	public Page page; // if null, frame is open
-	
-	public Frame(final int id) {
-		this.id = id;
-	}
-	
-	public Frame(final int id, final Page page) {
-		this.page = page;
+	public Frame(final int frameId) {
+		this.frameId = frameId;
 	}
 }

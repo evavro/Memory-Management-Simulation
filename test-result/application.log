@@ -1,29 +1,1233 @@
-07 Nov 2011 16:02:03,166 INFO  ~ Starting /home/erik/Documents/School/Operating Systems/Projects/Memory-Manager
-07 Nov 2011 16:02:03,791 WARN  ~ You're running Play! in DEV mode
-07 Nov 2011 16:02:03,977 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-07 Nov 2011 16:02:33,562 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
-07 Nov 2011 16:02:33,658 INFO  ~ Application 'Wolf Memory Manager' is now started !
-07 Nov 2011 19:43:14,765 ERROR ~ 
+08 Nov 2011 16:22:43,611 INFO  ~ Starting /home/erik/Documents/School/Operating Systems/Projects/Memory-Management-Simulation
+08 Nov 2011 16:22:43,972 WARN  ~ You're running Play! in DEV mode
+08 Nov 2011 16:22:44,035 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+08 Nov 2011 16:22:49,137 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+08 Nov 2011 16:22:49,784 ERROR ~ Javassist Enhancement failed: models.process.ProcessFile
+java.lang.RuntimeException: duplicate method: getId in models.process.ProcessFile_$$_javassist_0
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:344)
+	at javassist.util.proxy.ProxyFactory.createClass2(ProxyFactory.java:314)
+	at javassist.util.proxy.ProxyFactory.createClass(ProxyFactory.java:273)
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:162)
+	at org.hibernate.proxy.pojo.javassist.JavassistProxyFactory.postInstantiate(JavassistProxyFactory.java:65)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildProxyFactory(PojoEntityTuplizer.java:185)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:167)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:77)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:105)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:133)
+	at org.hibernate.tuple.entity.EntityEntityModeToTuplizerMapping.<init>(EntityEntityModeToTuplizerMapping.java:80)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:322)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:485)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:133)
+	at org.hibernate.persister.PersisterFactory.createClassPersister(PersisterFactory.java:84)
+	at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:286)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1842)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at play.server.PlayHandler$NettyInvocation.init(PlayHandler.java:168)
+	at play.Invoker$Invocation.run(Invoker.java:263)
+	at play.server.PlayHandler$NettyInvocation.run(PlayHandler.java:200)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(ScheduledThreadPoolExecutor.java:165)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Caused by: javassist.bytecode.DuplicateMemberException: duplicate method: getId in models.process.ProcessFile_$$_javassist_0
+	at javassist.bytecode.ClassFile.testExistingMethod(ClassFile.java:593)
+	at javassist.bytecode.ClassFile.addMethod(ClassFile.java:577)
+	at javassist.util.proxy.ProxyFactory.override(ProxyFactory.java:658)
+	at javassist.util.proxy.ProxyFactory.overrideMethods(ProxyFactory.java:632)
+	at javassist.util.proxy.ProxyFactory.make(ProxyFactory.java:552)
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:335)
+	... 37 more
+08 Nov 2011 16:22:49,785 WARN  ~ could not create proxy factory for:models.process.ProcessFile
+org.hibernate.HibernateException: Javassist Enhancement failed: models.process.ProcessFile
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:169)
+	at org.hibernate.proxy.pojo.javassist.JavassistProxyFactory.postInstantiate(JavassistProxyFactory.java:65)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildProxyFactory(PojoEntityTuplizer.java:185)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:167)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:77)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:105)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:133)
+	at org.hibernate.tuple.entity.EntityEntityModeToTuplizerMapping.<init>(EntityEntityModeToTuplizerMapping.java:80)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:322)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:485)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:133)
+	at org.hibernate.persister.PersisterFactory.createClassPersister(PersisterFactory.java:84)
+	at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:286)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1842)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at play.server.PlayHandler$NettyInvocation.init(PlayHandler.java:168)
+	at play.Invoker$Invocation.run(Invoker.java:263)
+	at play.server.PlayHandler$NettyInvocation.run(PlayHandler.java:200)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(ScheduledThreadPoolExecutor.java:165)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Caused by: java.lang.RuntimeException: duplicate method: getId in models.process.ProcessFile_$$_javassist_0
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:344)
+	at javassist.util.proxy.ProxyFactory.createClass2(ProxyFactory.java:314)
+	at javassist.util.proxy.ProxyFactory.createClass(ProxyFactory.java:273)
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:162)
+	... 34 more
+Caused by: javassist.bytecode.DuplicateMemberException: duplicate method: getId in models.process.ProcessFile_$$_javassist_0
+	at javassist.bytecode.ClassFile.testExistingMethod(ClassFile.java:593)
+	at javassist.bytecode.ClassFile.addMethod(ClassFile.java:577)
+	at javassist.util.proxy.ProxyFactory.override(ProxyFactory.java:658)
+	at javassist.util.proxy.ProxyFactory.overrideMethods(ProxyFactory.java:632)
+	at javassist.util.proxy.ProxyFactory.make(ProxyFactory.java:552)
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:335)
+	... 37 more
+08 Nov 2011 16:22:49,971 INFO  ~ Application 'Wolf Memory Manager' is now started !
+08 Nov 2011 16:23:07,664 ERROR ~ 
 
-@68b86ejhh
-Internal Server Error (500) for request GET /
+@68bed9a7b
+Internal Server Error (500) for request POST /application/uploadfile
 
-No route found (In /app/views/Application/index.html around line 21)
-No route able to invoke action ProcessController.uploadFile was found.
+Execution exception (In /app/models/process/ProcessFile.java around line 122)
+NumberFormatException occured : For input string: "Halt"
 
-play.exceptions.NoRouteFoundException: No route found
-	at play.templates.BaseTemplate.throwException(BaseTemplate.java:80)
-	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:237)
-	at play.templates.Template.render(Template.java:26)
-	at play.templates.GroovyTemplate.render(GroovyTemplate.java:184)
-	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:24)
-	at play.mvc.Controller.renderTemplate(Controller.java:659)
-	at play.mvc.Controller.renderTemplate(Controller.java:639)
-	at play.mvc.Controller.render(Controller.java:694)
-	at controllers.Application.index(Application.java:15)
+play.exceptions.JavaExecutionException: For input string: "Halt"
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:228)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NumberFormatException: For input string: "Halt"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:481)
+	at java.lang.Integer.parseInt(Integer.java:514)
+	at models.process.ProcessFile.splitDataToInts(ProcessFile.java:122)
+	at models.process.ProcessFile.createProcesses(ProcessFile.java:50)
+	at models.process.ProcessFile.<init>(ProcessFile.java:44)
+	at controllers.Application.uploadFile(Application.java:23)
 	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:543)
 	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:499)
 	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:475)
 	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:470)
 	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:158)
+	... 1 more
+08 Nov 2011 16:36:01,657 ERROR ~ 
+
+@68bed9a7c
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): collection foreign key mapping has wrong number of columns: models.process.ProcessFile.processes type: component[id,id]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
 	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: collection foreign key mapping has wrong number of columns: models.process.ProcessFile.processes type: component[id,id]
+	at org.hibernate.mapping.Collection.validate(Collection.java:307)
+	at org.hibernate.mapping.IndexedCollection.validate(IndexedCollection.java:90)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1336)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:17,104 ERROR ~ 
+
+@68bed9a7d
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:17,941 ERROR ~ 
+
+@68bed9a7e
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:18,159 ERROR ~ 
+
+@68bed9a7f
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:18,337 ERROR ~ 
+
+@68bed9a7g
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:18,527 ERROR ~ 
+
+@68bed9a7h
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:18,765 ERROR ~ 
+
+@68bed9a7i
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:19,008 ERROR ~ 
+
+@68bed9a7j
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:19,188 ERROR ~ 
+
+@68bed9a7k
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:19,399 ERROR ~ 
+
+@68bed9a7l
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:19,609 ERROR ~ 
+
+@68bed9a7m
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:19,818 ERROR ~ 
+
+@68bed9a7n
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:20,103 ERROR ~ 
+
+@68bed9a7o
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:20,318 ERROR ~ 
+
+@68bed9a7p
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:20,544 ERROR ~ 
+
+@68bed9a80
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:20,747 ERROR ~ 
+
+@68bed9a81
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:20,931 ERROR ~ 
+
+@68bed9a82
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:21,114 ERROR ~ 
+
+@68bed9a83
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:21,300 ERROR ~ 
+
+@68bed9a84
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:21,534 ERROR ~ 
+
+@68bed9a85
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:21,727 ERROR ~ 
+
+@68bed9a86
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:21,966 ERROR ~ 
+
+@68bed9a87
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:22,142 ERROR ~ 
+
+@68bed9a88
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:22,391 ERROR ~ 
+
+@68bed9a89
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:22,597 ERROR ~ 
+
+@68bed9a8a
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:22,829 ERROR ~ 
+
+@68bed9a8b
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:23,029 ERROR ~ 
+
+@68bed9a8c
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:23,248 ERROR ~ 
+
+@68bed9a8d
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:23,462 ERROR ~ 
+
+@68bed9a8e
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessFile, for columns: [org.hibernate.mapping.Column(processes)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 16:36:31,765 ERROR ~ Javassist Enhancement failed: models.process.ProcessFile
+java.lang.RuntimeException: duplicate method: getId in models.process.ProcessFile_$$_javassist_7
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:344)
+	at javassist.util.proxy.ProxyFactory.createClass2(ProxyFactory.java:314)
+	at javassist.util.proxy.ProxyFactory.createClass(ProxyFactory.java:273)
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:162)
+	at org.hibernate.proxy.pojo.javassist.JavassistProxyFactory.postInstantiate(JavassistProxyFactory.java:65)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildProxyFactory(PojoEntityTuplizer.java:185)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:167)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:77)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:105)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:133)
+	at org.hibernate.tuple.entity.EntityEntityModeToTuplizerMapping.<init>(EntityEntityModeToTuplizerMapping.java:80)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:322)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:485)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:133)
+	at org.hibernate.persister.PersisterFactory.createClassPersister(PersisterFactory.java:84)
+	at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:286)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1842)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at play.server.PlayHandler$NettyInvocation.init(PlayHandler.java:168)
+	at play.Invoker$Invocation.run(Invoker.java:263)
+	at play.server.PlayHandler$NettyInvocation.run(PlayHandler.java:200)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(ScheduledThreadPoolExecutor.java:165)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Caused by: javassist.bytecode.DuplicateMemberException: duplicate method: getId in models.process.ProcessFile_$$_javassist_7
+	at javassist.bytecode.ClassFile.testExistingMethod(ClassFile.java:593)
+	at javassist.bytecode.ClassFile.addMethod(ClassFile.java:577)
+	at javassist.util.proxy.ProxyFactory.override(ProxyFactory.java:658)
+	at javassist.util.proxy.ProxyFactory.overrideMethods(ProxyFactory.java:632)
+	at javassist.util.proxy.ProxyFactory.make(ProxyFactory.java:552)
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:335)
+	... 37 more
+08 Nov 2011 16:36:31,766 WARN  ~ could not create proxy factory for:models.process.ProcessFile
+org.hibernate.HibernateException: Javassist Enhancement failed: models.process.ProcessFile
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:169)
+	at org.hibernate.proxy.pojo.javassist.JavassistProxyFactory.postInstantiate(JavassistProxyFactory.java:65)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildProxyFactory(PojoEntityTuplizer.java:185)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:167)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:77)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:105)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:133)
+	at org.hibernate.tuple.entity.EntityEntityModeToTuplizerMapping.<init>(EntityEntityModeToTuplizerMapping.java:80)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:322)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:485)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:133)
+	at org.hibernate.persister.PersisterFactory.createClassPersister(PersisterFactory.java:84)
+	at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:286)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1842)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at play.server.PlayHandler$NettyInvocation.init(PlayHandler.java:168)
+	at play.Invoker$Invocation.run(Invoker.java:263)
+	at play.server.PlayHandler$NettyInvocation.run(PlayHandler.java:200)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(ScheduledThreadPoolExecutor.java:165)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Caused by: java.lang.RuntimeException: duplicate method: getId in models.process.ProcessFile_$$_javassist_7
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:344)
+	at javassist.util.proxy.ProxyFactory.createClass2(ProxyFactory.java:314)
+	at javassist.util.proxy.ProxyFactory.createClass(ProxyFactory.java:273)
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:162)
+	... 34 more
+Caused by: javassist.bytecode.DuplicateMemberException: duplicate method: getId in models.process.ProcessFile_$$_javassist_7
+	at javassist.bytecode.ClassFile.testExistingMethod(ClassFile.java:593)
+	at javassist.bytecode.ClassFile.addMethod(ClassFile.java:577)
+	at javassist.util.proxy.ProxyFactory.override(ProxyFactory.java:658)
+	at javassist.util.proxy.ProxyFactory.overrideMethods(ProxyFactory.java:632)
+	at javassist.util.proxy.ProxyFactory.make(ProxyFactory.java:552)
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:335)
+	... 37 more
+08 Nov 2011 16:41:00,330 ERROR ~ Javassist Enhancement failed: models.process.ProcessFile
+java.lang.RuntimeException: duplicate method: getId in models.process.ProcessFile_$$_javassist_14
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:344)
+	at javassist.util.proxy.ProxyFactory.createClass2(ProxyFactory.java:314)
+	at javassist.util.proxy.ProxyFactory.createClass(ProxyFactory.java:273)
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:162)
+	at org.hibernate.proxy.pojo.javassist.JavassistProxyFactory.postInstantiate(JavassistProxyFactory.java:65)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildProxyFactory(PojoEntityTuplizer.java:185)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:167)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:77)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:105)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:133)
+	at org.hibernate.tuple.entity.EntityEntityModeToTuplizerMapping.<init>(EntityEntityModeToTuplizerMapping.java:80)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:322)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:485)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:133)
+	at org.hibernate.persister.PersisterFactory.createClassPersister(PersisterFactory.java:84)
+	at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:286)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1842)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at play.server.PlayHandler$NettyInvocation.init(PlayHandler.java:168)
+	at play.Invoker$Invocation.run(Invoker.java:263)
+	at play.server.PlayHandler$NettyInvocation.run(PlayHandler.java:200)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(ScheduledThreadPoolExecutor.java:165)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Caused by: javassist.bytecode.DuplicateMemberException: duplicate method: getId in models.process.ProcessFile_$$_javassist_14
+	at javassist.bytecode.ClassFile.testExistingMethod(ClassFile.java:593)
+	at javassist.bytecode.ClassFile.addMethod(ClassFile.java:577)
+	at javassist.util.proxy.ProxyFactory.override(ProxyFactory.java:658)
+	at javassist.util.proxy.ProxyFactory.overrideMethods(ProxyFactory.java:632)
+	at javassist.util.proxy.ProxyFactory.make(ProxyFactory.java:552)
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:335)
+	... 37 more
+08 Nov 2011 16:41:00,331 WARN  ~ could not create proxy factory for:models.process.ProcessFile
+org.hibernate.HibernateException: Javassist Enhancement failed: models.process.ProcessFile
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:169)
+	at org.hibernate.proxy.pojo.javassist.JavassistProxyFactory.postInstantiate(JavassistProxyFactory.java:65)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildProxyFactory(PojoEntityTuplizer.java:185)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:167)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:77)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:105)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:133)
+	at org.hibernate.tuple.entity.EntityEntityModeToTuplizerMapping.<init>(EntityEntityModeToTuplizerMapping.java:80)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:322)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:485)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:133)
+	at org.hibernate.persister.PersisterFactory.createClassPersister(PersisterFactory.java:84)
+	at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:286)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1842)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at play.server.PlayHandler$NettyInvocation.init(PlayHandler.java:168)
+	at play.Invoker$Invocation.run(Invoker.java:263)
+	at play.server.PlayHandler$NettyInvocation.run(PlayHandler.java:200)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(ScheduledThreadPoolExecutor.java:165)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Caused by: java.lang.RuntimeException: duplicate method: getId in models.process.ProcessFile_$$_javassist_14
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:344)
+	at javassist.util.proxy.ProxyFactory.createClass2(ProxyFactory.java:314)
+	at javassist.util.proxy.ProxyFactory.createClass(ProxyFactory.java:273)
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:162)
+	... 34 more
+Caused by: javassist.bytecode.DuplicateMemberException: duplicate method: getId in models.process.ProcessFile_$$_javassist_14
+	at javassist.bytecode.ClassFile.testExistingMethod(ClassFile.java:593)
+	at javassist.bytecode.ClassFile.addMethod(ClassFile.java:577)
+	at javassist.util.proxy.ProxyFactory.override(ProxyFactory.java:658)
+	at javassist.util.proxy.ProxyFactory.overrideMethods(ProxyFactory.java:632)
+	at javassist.util.proxy.ProxyFactory.make(ProxyFactory.java:552)
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:335)
+	... 37 more
+08 Nov 2011 17:27:05,277 ERROR ~ 
+
+@68bed9a8f
+Internal Server Error (500) for request GET /
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Could not determine type for: java.util.Map, at table: ProcessPageTableState, for columns: [org.hibernate.mapping.Column(pageMap)]
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Map, at table: ProcessPageTableState, for columns: [org.hibernate.mapping.Column(pageMap)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:306)
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:290)
+	at org.hibernate.mapping.Property.isValid(Property.java:217)
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:464)
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:235)
+	at org.hibernate.cfg.Configuration.validate(Configuration.java:1332)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1835)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+08 Nov 2011 17:29:23,645 ERROR ~ Javassist Enhancement failed: models.process.ProcessFile
+java.lang.RuntimeException: duplicate method: getId in models.process.ProcessFile_$$_javassist_21
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:344)
+	at javassist.util.proxy.ProxyFactory.createClass2(ProxyFactory.java:314)
+	at javassist.util.proxy.ProxyFactory.createClass(ProxyFactory.java:273)
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:162)
+	at org.hibernate.proxy.pojo.javassist.JavassistProxyFactory.postInstantiate(JavassistProxyFactory.java:65)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildProxyFactory(PojoEntityTuplizer.java:185)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:167)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:77)
+	at sun.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:105)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:133)
+	at org.hibernate.tuple.entity.EntityEntityModeToTuplizerMapping.<init>(EntityEntityModeToTuplizerMapping.java:80)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:322)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:485)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:133)
+	at org.hibernate.persister.PersisterFactory.createClassPersister(PersisterFactory.java:84)
+	at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:286)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1842)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at play.server.PlayHandler$NettyInvocation.init(PlayHandler.java:168)
+	at play.Invoker$Invocation.run(Invoker.java:263)
+	at play.server.PlayHandler$NettyInvocation.run(PlayHandler.java:200)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(ScheduledThreadPoolExecutor.java:165)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Caused by: javassist.bytecode.DuplicateMemberException: duplicate method: getId in models.process.ProcessFile_$$_javassist_21
+	at javassist.bytecode.ClassFile.testExistingMethod(ClassFile.java:593)
+	at javassist.bytecode.ClassFile.addMethod(ClassFile.java:577)
+	at javassist.util.proxy.ProxyFactory.override(ProxyFactory.java:658)
+	at javassist.util.proxy.ProxyFactory.overrideMethods(ProxyFactory.java:632)
+	at javassist.util.proxy.ProxyFactory.make(ProxyFactory.java:552)
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:335)
+	... 36 more
+08 Nov 2011 17:29:23,646 WARN  ~ could not create proxy factory for:models.process.ProcessFile
+org.hibernate.HibernateException: Javassist Enhancement failed: models.process.ProcessFile
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:169)
+	at org.hibernate.proxy.pojo.javassist.JavassistProxyFactory.postInstantiate(JavassistProxyFactory.java:65)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.buildProxyFactory(PojoEntityTuplizer.java:185)
+	at org.hibernate.tuple.entity.AbstractEntityTuplizer.<init>(AbstractEntityTuplizer.java:167)
+	at org.hibernate.tuple.entity.PojoEntityTuplizer.<init>(PojoEntityTuplizer.java:77)
+	at sun.reflect.GeneratedConstructorAccessor27.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructTuplizer(EntityTuplizerFactory.java:105)
+	at org.hibernate.tuple.entity.EntityTuplizerFactory.constructDefaultTuplizer(EntityTuplizerFactory.java:133)
+	at org.hibernate.tuple.entity.EntityEntityModeToTuplizerMapping.<init>(EntityEntityModeToTuplizerMapping.java:80)
+	at org.hibernate.tuple.entity.EntityMetamodel.<init>(EntityMetamodel.java:322)
+	at org.hibernate.persister.entity.AbstractEntityPersister.<init>(AbstractEntityPersister.java:485)
+	at org.hibernate.persister.entity.SingleTableEntityPersister.<init>(SingleTableEntityPersister.java:133)
+	at org.hibernate.persister.PersisterFactory.createClassPersister(PersisterFactory.java:84)
+	at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:286)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1842)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:902)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at play.server.PlayHandler$NettyInvocation.init(PlayHandler.java:168)
+	at play.Invoker$Invocation.run(Invoker.java:263)
+	at play.server.PlayHandler$NettyInvocation.run(PlayHandler.java:200)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:334)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:166)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(ScheduledThreadPoolExecutor.java:165)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1110)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:603)
+	at java.lang.Thread.run(Thread.java:679)
+Caused by: java.lang.RuntimeException: duplicate method: getId in models.process.ProcessFile_$$_javassist_21
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:344)
+	at javassist.util.proxy.ProxyFactory.createClass2(ProxyFactory.java:314)
+	at javassist.util.proxy.ProxyFactory.createClass(ProxyFactory.java:273)
+	at org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer.getProxyFactory(JavassistLazyInitializer.java:162)
+	... 33 more
+Caused by: javassist.bytecode.DuplicateMemberException: duplicate method: getId in models.process.ProcessFile_$$_javassist_21
+	at javassist.bytecode.ClassFile.testExistingMethod(ClassFile.java:593)
+	at javassist.bytecode.ClassFile.addMethod(ClassFile.java:577)
+	at javassist.util.proxy.ProxyFactory.override(ProxyFactory.java:658)
+	at javassist.util.proxy.ProxyFactory.overrideMethods(ProxyFactory.java:632)
+	at javassist.util.proxy.ProxyFactory.make(ProxyFactory.java:552)
+	at javassist.util.proxy.ProxyFactory.createClass3(ProxyFactory.java:335)
+	... 36 more
+08 Nov 2011 17:47:47,275 ERROR ~ 
+
+@68bed9a8g
+Internal Server Error (500) for request POST /application/uploadfile
+
+JPA error
+A JPA error occurred (Unable to build EntityManagerFactory): Use of the same entity name twice: ProcessPageTable
+
+play.exceptions.JPAException: Unable to build EntityManagerFactory
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:231)
+	at play.plugins.PluginCollection.onApplicationStart(PluginCollection.java:425)
+	at play.Play.start(Play.java:492)
+	at play.Play.detectChanges(Play.java:607)
+	at play.Invoker$Invocation.init(Invoker.java:186)
+	at Invocation.HTTP Request(Play!)
+Caused by: org.hibernate.AnnotationException: Use of the same entity name twice: ProcessPageTable
+	at org.hibernate.cfg.annotations.EntityBinder.bindEntity(EntityBinder.java:362)
+	at org.hibernate.cfg.AnnotationBinder.bindClass(AnnotationBinder.java:586)
+	at org.hibernate.cfg.Configuration$MetadataSourceQueue.processAnnotatedClassesQueue(Configuration.java:3977)
+	at org.hibernate.cfg.Configuration$MetadataSourceQueue.processMetadata(Configuration.java:3931)
+	at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1368)
+	at org.hibernate.cfg.Configuration.buildMappings(Configuration.java:1345)
+	at org.hibernate.ejb.Ejb3Configuration.buildMappings(Ejb3Configuration.java:1477)
+	at org.hibernate.ejb.EventListenerConfigurator.configure(EventListenerConfigurator.java:193)
+	at org.hibernate.ejb.Ejb3Configuration.configure(Ejb3Configuration.java:1096)
+	at org.hibernate.ejb.Ejb3Configuration.buildEntityManagerFactory(Ejb3Configuration.java:900)
+	at play.db.jpa.JPAPlugin.onApplicationStart(JPAPlugin.java:229)
+	... 5 more
+Caused by: org.hibernate.DuplicateMappingException: duplicate import: ProcessPageTable refers to both models.pages.ProcessPageTable and models.process.ProcessPageTable (try using auto-import="false")
+	at org.hibernate.cfg.Configuration$MappingsImpl.addImport(Configuration.java:3132)
+	at org.hibernate.cfg.annotations.EntityBinder.bindEntity(EntityBinder.java:355)
+	... 15 more

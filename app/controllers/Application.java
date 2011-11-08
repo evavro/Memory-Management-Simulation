@@ -20,7 +20,7 @@ public class Application extends Controller {
 			throw new Exception("No file selected for upload");
 		
 		// Parse a file and log the session
-		//ProcessFile session = new ProcessFile(file);
+		ProcessFile session = new ProcessFile(file);
 		
 		System.out.println(String.format("Uploaded and processed %s", file.getName()));
 		
