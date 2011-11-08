@@ -1,14 +1,24 @@
 package models.pages;
 
-public class Page {
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import play.db.jpa.Model;
+
+// Represents a temporary page (part of a state) in memory
+public abstract class Page extends Model {
 	
-	int frame;
-	int pageId;
+	// each page type (text/data) begins numbering its pages with page 0
 	
-	// each segment begins numbering its pages with page 0
-	// (segment = text or data)
-	
-	public void updateFrame(final int frame) {
-		this.frame = frame;
+	@OneToOne
+	public Frame frame;
+
+	public void free() {
+		delete();
 	}
+	
+	public abstract int getPageId();
 }

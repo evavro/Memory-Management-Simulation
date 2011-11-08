@@ -58,7 +58,7 @@
 			<!--  Create a "Next" button that steps through the lines of the simulation! -->
 		</div>
 		<p>
-			#{form @ProcessController.uploadFile(), id:'submit_file', enctype:'multipart/form-data'}
+			#{form @Application.uploadFile(), id:'submit_file', enctype:'multipart/form-data'}
 			    <input type="text" name="title" />
 			    <input type="file" id="file" name="file" />
 			    <input type="submit" value="Go" />

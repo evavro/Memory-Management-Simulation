@@ -1,10 +1,21 @@
 package models.process;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
+import models.pages.DataPage;
+import models.pages.Page;
+import models.pages.TextPage;
+
 import play.db.jpa.Model;
 
-public abstract class Process extends Model {
-	// Process Id
-	public int procId;
+@Entity
+public class Process extends Model {
+	
+	// Process ID
+	public int id;
 	
 	// Size of text segment (in bytes) provided by the source file
 	public int textSize;
@@ -12,20 +23,39 @@ public abstract class Process extends Model {
 	// Size of data segment (in bytes) provided by the source file
 	public int dataSize;
 	
-	//public ProcessTable table; 	// a.k.a. ProcessPageTable
+	@OneToOne
+	public ProcessPageTable table; 	// a.k.a. ProcessPageTable
 	
 	// Page size in bytes
+	@Transient
 	final int PAGE_SIZE = 512;
 	
-	public Process(final int procId,
+	public Process(final int id,
 				   final int textSize,
 				   final int dataSize) {
-		this.procId = procId;
+		
+		this.id = id;
 		this.textSize = textSize;
 		this.dataSize = dataSize;
-		//this.table = new ProcessTable();
+		this.table = new ProcessPageTable(this);
 		
 		allocateMemory(); // allocate memory space and map
+	}
+	
+	public void setTextPages() {
+		final int numText = determineNumPages(textSize);
+		int count = 0;
+		
+		for(int i = 0; i < numText; i++)
+			new TextPage(i).save();
+	}
+	
+	public void setDataPages() {
+		final int numData = determineNumPages(dataSize);
+		int count = 0;
+		
+		for(int i = 0; i < numData; i++)
+			new DataPage(i).save();
 	}
 	
 	private void allocateMemory() {
@@ -48,5 +78,13 @@ public abstract class Process extends Model {
 		int mod = size % PAGE_SIZE;
 		
 		return mod == 0 ? roughDivide : roughDivide + 1;
+	}
+	
+	public void terminate() {
+		// delete all related pages
+		// delete ProcessPageTables
+		// delete ProcessPageTableState
+		
+		delete();
 	}
 }
