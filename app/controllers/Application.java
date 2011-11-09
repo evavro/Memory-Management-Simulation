@@ -1,13 +1,9 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-
 import java.io.File;
-import java.util.*;
 
-import models.*;
-import models.process.ProcessFile;
+import models.MemoryManager;
+import play.mvc.Controller;
 
 public class Application extends Controller {
 
@@ -19,11 +15,10 @@ public class Application extends Controller {
 		if(file == null)
 			throw new Exception("No file selected for upload");
 		
-		// Parse a file and log the session
-		ProcessFile session = new ProcessFile(file);
+		MemoryManager session = new MemoryManager(file);
 		
 		System.out.println(String.format("Uploaded and processed %s", file.getName()));
 		
-		renderTemplate("Application/ProcessTable.html");
+		renderTemplate("Application/ProcessTable.html", session);
 	}
 }
