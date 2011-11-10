@@ -1,8 +1,10 @@
 package controllers;
 
 import java.io.File;
+import java.util.List;
 
 import models.MemoryManager;
+import play.mvc.Catch;
 import play.mvc.Controller;
 
 public class Application extends Controller {
@@ -15,10 +17,20 @@ public class Application extends Controller {
 		if(file == null)
 			throw new Exception("No file selected for upload");
 		
-		MemoryManager session = new MemoryManager(file);
+		// TODO: DELETE ALL PRE-EXISTING MEMORY MANAGERS
+		
+		MemoryManager memory = new MemoryManager(file);
 		
 		System.out.println(String.format("Uploaded and processed %s", file.getName()));
 		
-		renderTemplate("Application/ProcessTable.html", session);
+		//List<String> table = memory.getFrameTable();
+		
+		//render("Application/ProcessTable.html", memory);
+		render("Application/ProcessTable.html", memory);
+	}
+	
+	@Catch(Exception.class)
+	public static void errorCatcher(Exception e) {
+		// create and render html
 	}
 }

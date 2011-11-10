@@ -73,8 +73,14 @@ body {
 
 #process_table .pt_frame {
 	border: 1px solid #333333;
+	padding-left: 12px;
+	padding-right: 12px;
 	min-width: 100px;
 	height: 40px;
 	color: #444444;
+	font-size: 14px;
+}
+
+#latest_action {
 	font-size: 14px;
 }

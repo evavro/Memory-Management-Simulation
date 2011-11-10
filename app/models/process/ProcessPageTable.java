@@ -17,6 +17,8 @@ public class ProcessPageTable extends Model {
 	@OneToOne
 	public Process process;
 	
+	// TODO: keep track of the relevant pages here! (or even in process, probably makes more sense)
+	
 	// Various states of the page table defined in the source file
 	@OneToMany
 	public List<ProcessPageTableState> states = new ArrayList<ProcessPageTableState>();
@@ -32,6 +34,8 @@ public class ProcessPageTable extends Model {
 			
 	public ProcessPageTable(final Process process) {
 		this.process = process;
+		
+		save();
 	}
 	
 	public void addState(final ProcessPageTableState state) {

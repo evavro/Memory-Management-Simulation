@@ -6,14 +6,24 @@
 	$(document).ready(function() {
 		$('#submit_file').ajaxForm({
 			target: '#process_table_container',
-			/*success: function() { 
-				//alert("File uploaded!"); 
-				$('#process_table_container').html("Processed file ...");
-			}*/
 			resetForm: true,
 			success: showResponse
 		}); 
+		
+		/*$('#next').click(function() {
+			alert('going to the next thing!');
+		});*/
 	}); 
+	
+	function goNext() {
+		$('#process_table_container').ajax({
+			  url: "@{ProcessController.nextAction()}",
+			  context: document.body,
+			  success: function(){
+			   	 alert('All done nigga');
+			  }
+		});
+	}
 	
 	function showResponse(responseText, statusText, xhr, $form)  { 	 
 	    // statusText
@@ -27,7 +37,7 @@
 		<h2>Linux Memory Management Simulation</h2f>
 	</div>
 	<div id="main">
-		<span id="table_label">Physical Memory</span>
+		
 		<div id="process_table_container" align="center">
 			<!--  Create a "Next" button that steps through the lines of the simulation! -->
 		</div>

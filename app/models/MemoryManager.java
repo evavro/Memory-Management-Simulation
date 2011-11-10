@@ -8,16 +8,15 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.EntityManager;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-import models.process.DataPage;
+import models.process.EmptyPage;
 import models.process.Frame;
 import models.process.Page;
 import models.process.Process;
-import models.process.TextPage;
-
+import play.db.jpa.JPA;
 import play.db.jpa.Model;
 import play.libs.IO;
 
@@ -30,51 +29,70 @@ public class MemoryManager extends Model
 	// List of actions in the file
 	public ArrayList<String> actions;
 	
-	// Current action that is being handled (current state)
+	/*@ElementCollection
+    @MapKeyColumn(name="frameId")
+    @Column(name="pageId")
+	@OneToMany(cascade = CascadeType.ALL)*/
+	@OneToMany
+	public Map<Frame, Page> pageMap = new HashMap<Frame, Page>();
+	
+	//@OneToMany
+	//public List<MemoryState> memoryStates;// = new ArrayList<MemoryState>();
+	
+	// Current action (memory state) that is being handled (current state)
 	public int currentAction = 0;
 	
-	// Size of physical memory in bytes
-	public final int MEMORY_MAX_SIZE = 4096;
+	public String currentActionDescription = "";
 	
 	// The number of frames that can fit into physical memory
-	public final int FRAMES = MEMORY_MAX_SIZE / Page.PAGE_MAX_SIZE;
+	public int frames = 0;
+	
+	// Size of physical memory in bytes
+	@Transient
+	public final int MEMORY_MAX_SIZE = 4096;
 	
 	// The events that a process can do in memory
 	public enum EventType {Arrive, Exit}
 	
-	// Amount of free memory given the current state
-	public int freeMemory = MEMORY_MAX_SIZE;
+	// Amount of free memory provided the current state in memory
+	public int freeMemory;
 	
-	public MemoryManager(final File file) throws Exception
-	{
+	@Transient
+	private EntityManager em = JPA.em();
+	
+	public MemoryManager(final File file) throws Exception {
+		
+		// Delete all previous MemoryManagers and their contained objects
 		this.actions = (ArrayList) IO.readLines(file);
+		this.frames = MEMORY_MAX_SIZE / Page.PAGE_MAX_SIZE;
+		this.freeMemory = MEMORY_MAX_SIZE;
 		
 		// Mark our existence so that other objects can reference us
 		save();
 		
 		createFrames();
 		createProcesses();
-		// createProcessStates();
 		
-		// FIXME: NOT the right place for this, only for testing
-		createMemoryMapping();
+		actionCycle();
 	}
 	
 	// Create the frame slots in physical memory
-	public void createFrames()
-	{
-		for(int i = 0; i < FRAMES; i++)
-			new Frame(i).save();
+	public void createFrames() {
+		Frame newFrame = null;
+		
+		for(int i = 0; i < frames; i++) {
+			newFrame = new Frame(i);
+			
+			pageMap.put(newFrame, new EmptyPage());
+		}
 	}
 	
 	// Create the processes
-	public void createProcesses() throws Exception
-	{
-		for(String action : actions)
-		{
+	public void createProcesses() throws Exception {
+		for(String action : actions) {
+			
 			// 3 chunks in a line = process memory info
-			if(splitData(action).length == 3)
-			{
+			if(splitData(action).length == 3) {
 				Integer[] chunks = splitDataToInts(action);
 				Integer id = chunks[0];
 				Integer textSize = chunks[1];
@@ -89,91 +107,68 @@ public class MemoryManager extends Model
 		System.out.println("Processes: " + processes.size());
 	}
 	
-	public void createProcessStates() throws Exception 
-	{
-		for(String action : actions)
-		{
-			Integer[] chunks = splitDataToInts(action);
-			Integer id = chunks[0];
-			EventType type = determineEvent(action);
-			Process proc = processes.get(id);
+	public void actionCycle() throws Exception {
+		if(currentAction < actions.size()) {
+			handleNextAction();
+		} else {
+			// FIXME: Should have some sort of indiciation that we've reached the end of the file
+			currentAction = 0;
+		}
+	}
+	
+	public void handleNextAction() throws Exception {
+		String action = actions.get(currentAction);
+		Process process = processes.get(splitDataToInts(action)[0]);
 			
-			// this could get messy...
+			// Relate the manager with a memory state
+			//memoryStates.add(memState);
 			
 			// go through each line, read what the action is
 			// 		go through each process -> process table
 			//				determine the frame/page map at the current action for a process and save it to a ProcessPageTableState
 			
-			switch(type) {
-				case Arrive:
+		switch(determineEvent(action)) {
+			case Arrive:
+				currentActionDescription = String.format("%s arriving. Text page size = %s, Data page size = %s", process, process.textSize, process.dataSize);
+				
+				putProcessInMemory(process);
+				break;
 					
-					break;
-				case Exit:
+			case Exit:
+				currentActionDescription = String.format("%s terminating.", process);
 					
-					break;
-					
-				// either way, update PageTables for ALL processes whenever anything happens
-			}
+				terminateProcess(process);
+				break;
+		}
+			
+		currentAction++;
+	}
+	
+	public void putProcessInMemory(final Process process) {
+		List<Page> pages = process.getPages();
+		
+		for(Page p : pages)
+			allocateProcessPage(p);
+				
+		//em.persist(this);
+				
+		/*System.out.println("\n\n&&&& Just finished putting process " + process + " into memory. Here's the table:");
+				
+		for(Map.Entry<Frame, Page> entry : pageMap.entrySet()) {
+			System.out.println("Frame " + entry.getKey() + " : Page " + entry.getValue());
+		}*/
+	}
+	
+	public void terminateProcess(final Process process) {
+		for (Map.Entry<Frame, Page> slot : pageMap.entrySet()) {
+			Frame frame = slot.getKey();
+			Page page = slot.getValue();
+			
+			if(process.equals(page.getProcess()))
+				pageMap.put(frame, new EmptyPage());
 		}
 	}
-	
-	// Create a map of memory (at a certain step)
-	public Map<Frame, Process> createMemoryMapping() throws Exception
-	{
-		final Map<Frame, Process> map = new HashMap<Frame, Process>();
-		final List<Frame> frames = Frame.findAll();
-		final List<Process> processes = Process.findAll();
-		final EventType action = determineEvent(actions.get(currentAction));
 		
-		// Create a snapshot of the resulting memory state
-		final MemoryState memState = new MemoryState();
-		
-		/* Worst Fit Algorithm
-		 * 
-		 * The memory manager places the process in the largest block of unallocated
-		 * memory available. The idea is that this placement will create the largest
-		 * hole after the allocations, thus increasing the possibility that, compared
-		 * to the best fit, another process can use the hole created as a result of
-		 * external fragmentation.
-		 */
-		
-		// look for the largest block of open memory
-		
-		// !!!! Look up the MemoryState previous to the current one and use it as a starting point
-		
-		for(Process process : processes) {
-			List<Page> pages = process.getPages();
-			
-			for(Page page : pages)
-				putPageInMemory(page);
-		}
-		
-		// Create a MemoryState with the map!
-		
-		return null;
-	}
-	
-	public void putPageInMemory(final Page page) {
-		
-	}
-
-	public void parseNextAction()
-	{
-		// If there's a line to parse
-		if(currentAction + 1 != actions.size()) {
-			
-		}	
-	}
-	
-	public void parseAction(final int actionIndex)
-	{
-		/* 	allocated and mapped 3 text pages and 2 data pages for Process 0
-			allocated and mapped 2 text pages and 1 data page for Process 1
-			reclaimed the frames released when process 0 terminates. */
-		
-		// create a ProcessPageTableState
-	}
-	
 	public EventType determineEvent(final String line) throws Exception
 	{
 		final String[] chunks = splitData(line);
@@ -200,29 +195,110 @@ public class MemoryManager extends Model
 		String[] chunks = splitData(line);
 		Integer[] intChunks = new Integer[chunks.length];
 			
-		for(int i = 0; i < chunks.length; i++)
-			intChunks[i] = Integer.parseInt(chunks[i]);
+		for(int i = 0; i < chunks.length; i++) {
+			try {
+				intChunks[i] = Integer.parseInt(chunks[i]);
+			} catch (NumberFormatException e) {
+				intChunks[i] = -1;
+			}
+		}
 			
 		return intChunks;
 	}
 	
 	// Memory Actions
 	
-	// Return true if malloc was successful, false otherwise
-	public boolean malloc(final int bytes) throws Exception {
-		final int newMemSize = freeMemory - bytes;
+	// **** Definitely neeed to build this map from the individual process pcbs....
+	
+	// Places a page into memory using the worst-fit algorithm
+	public void allocateProcessPage(final Page page) {
+		final Frame largestFrame = getLargestFrame();
+		final int freeMemInFrame = getFreeBytesInFrame(largestFrame);
 		
-		if(newMemSize < 0)
-			return false; // TODO: If this fails, move other stuff out of memory (maybe handle this action in MemoryManager?)
+		System.out.println("ENTERING PAGE MAP: " + pageMap);
+		System.out.println("Allocating page (" + page + ") @ largest frame: " + largestFrame);
+		
+		if(page.getSize() <= freeMemInFrame)
+			pageMap.put(largestFrame, page);
+		
+		//em.persist(this);
+		
+		System.out.println("OKAY, HERE'S THE NEW MAP:\n" + pageMap);
+	}
+	
+	// Find the largest frame in memory using the worst-fit algorithm)
+	public Frame getLargestFrame() {
+		List<Frame> frames = Frame.all().fetch();
+		Frame largestFrame = frames.get(0);
+		
+		// Find the frame in memory with the most free memory
+		for(Frame frame : frames) {
+			int currFrameFreeMem = getFreeBytesInFrame(frame);
 			
-		freeMemory = newMemSize;
+			// If memory is empty, the first frame is the biggest (they're all equally sized)
+			if(isMemoryEmpty()) {
+				largestFrame = frame;
+				
+				break;
+			} else {
+				
+				// If the current frame has more free memory than the current largest, it's now the largest
+				if(currFrameFreeMem > getFreeBytesInFrame(largestFrame)) {
+					//System.out.println("FOUND A NEW LARGEST FRAME " + frame + ", new: " + currFrameFreeMem + ", old: " + getFreeBytesInFrame(largestFrame));
+					largestFrame = frame;
+				}
+			}		
+		}
 		
-		System.out.println("Allocated " + bytes + " bytes");
+		return largestFrame;
+	}
+	
+	public int getFreeBytesInFrame(final Frame frame) {
+		final Page matchedPage = pageMap.get(frame);
 		
-		//save(); - causes issues, not even sure if necessary yet
-		
+		return matchedPage != null ? matchedPage.getFreeMemory() : Page.PAGE_MAX_SIZE;
+	}
+	
+	// Determines if memory is completely empty at this state in memory
+	public boolean isMemoryEmpty() {
+		for(Page page : pageMap.values())
+			if(page.isExistent())
+				return false;
+				
 		return true;
 	}
 	
 	// HTML Methods
+	
+	public String getFrameTableTitle() {
+		return "Physical Memory (" + MEMORY_MAX_SIZE + " bytes)";
+	}
+	
+	public String getActionDescription() {
+		return currentActionDescription;
+	}
+	
+	public List<String> getFrameTable() {
+		List<String> framesHTML = new ArrayList<String>(frames);
+		
+		for(Map.Entry<Frame, Page> slot : pageMap.entrySet()) {
+			Page p = slot.getValue();
+			
+			framesHTML.add(p.toString());
+		}
+		
+		return framesHTML;
+	}
+	
+	public String getFrameTableHTML() {
+		String table = "<table id=\"process_table\" align=\"center\">";
+		
+		for(Map.Entry<Frame, Page> slot : pageMap.entrySet())
+			table += String.format("<tr><td class=\"pt_frame_label\">Frame %s</td><td class=\"pt_frame\">%s</td></tr>", slot.getKey(), slot.getValue());
+
+		table += "</table>";
+		table += "<input type=\"button\" value=\"Next State >\" />";
+		
+		return table;
+	}
 }

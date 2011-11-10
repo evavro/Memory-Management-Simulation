@@ -1,20 +1,20 @@
 package models.process;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
 
 import models.MemoryManager;
-
+import models.MemoryState;
 import play.db.jpa.Model;
 
+//This represents what would be commonly known as a PCB (Process Control Block) in an operating system's kernel
 @Entity
-// This represents what would be commonly known as a PCB (Process Control Block) in an operating system's kernel
 public class Process extends Model {
 	
 	// Process ID provided by the source file
@@ -30,8 +30,25 @@ public class Process extends Model {
 	@ManyToOne
 	public MemoryManager memory;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY, 
+			   cascade = { CascadeType.PERSIST,
+            			   CascadeType.MERGE,
+            			   CascadeType.REMOVE })
 	public ProcessPageTable table; 	// a.k.a. ProcessPageTable
+	
+	// These may not be necessary...
+	@OneToMany(fetch = FetchType.LAZY, 
+			   cascade = { CascadeType.PERSIST,
+            			   CascadeType.MERGE,
+            			   CascadeType.REMOVE })
+	public List<TextPage> textPages;
+	
+	// These may not be necessary...
+	@OneToMany(fetch = FetchType.LAZY, 
+			   cascade = { CascadeType.PERSIST,
+            			   CascadeType.MERGE,
+            			   CascadeType.REMOVE })
+	public List<DataPage> dataPages;
 	
 	public Process(final int procId,
 				   final int textSize,
@@ -48,46 +65,77 @@ public class Process extends Model {
 		// Save this process into JPA so that we can reference it in the ProcessPageTable
 		save();
 		
-		// Create the page table for this process and save it to JPA
-		this.table = new ProcessPageTable(this).save();
+		// Create the page table for this process
+		this.table = new ProcessPageTable(this);
 		
 		// Save this process again with the newly created process page table
 		save();
 		
-		createMemorySegments();
+		createPages();
 	}
 	
-	// Creates
-	private void createMemorySegments() throws Exception {
+	// Creates the page data segments that will be switched in and out by the memory manager (no actual allocation occurs here!)
+	private void createPages() throws Exception {
 		System.out.println(String.format("Process %s: Number text pages: %s, Number data pages: %s", procId, determineNumPages(textSize), determineNumPages(dataSize)));
 		
 		createDataPages();
 		createTextPages();
-	}
-	
-	public void createTextPages() throws Exception {
-		final int numText = determineNumPages(textSize);
-		final int freeMemory = memory.freeMemory;
-		final int totalSizePages = freeMemory - (freeMemory - textSize);
-		final int pageSize = textSize / numText;
 		
-		for(int i = 0; i < numText; i++)
-			new TextPage(i, pageSize, this);
+		save();
 	}
 	
 	public void createDataPages() throws Exception {
+		final int maxPageSize = Page.PAGE_MAX_SIZE;
 		final int numData = determineNumPages(dataSize);
-		final int freeMemory = memory.freeMemory;
-		final int totalSizePages = freeMemory - (freeMemory - dataSize);
-		final int pageSize = textSize / numData;
 		
-		for(int i = 0; i < numData; i++)
-			new DataPage(i, pageSize, this);
+		int pageSize;
+		int remainingMemToAlloc = dataSize;
 		
-		// DON'T MALLOC HERE!! THE CREATE DATA PAGE AND CREATE TEXT PAGE ONLY CREATES THE PAGES AND TEXTS THAT CAN POSSIBLY EXIST!
-		// YOU THEN PULL THEM IN AND OUT OF MEMORY AS NEEDED! (HANDLED BY MEMORY MANAGER!)
-		//memory.malloc(totalSizePages);
+		for(int i = 0; i < numData; i++) {
+			if(remainingMemToAlloc - maxPageSize > 0) {
+				pageSize = maxPageSize;
+			} else {
+				pageSize = remainingMemToAlloc;	
+			}
+			
+			remainingMemToAlloc -= pageSize;
+			
+			System.out.println("Put data page into memory of size " + pageSize +", remaining memory: " + remainingMemToAlloc);
+			
+			dataPages.add(new DataPage(i, pageSize, this));
+		}
 	}
+	
+	public void createTextPages() throws Exception {
+		final int maxPageSize = Page.PAGE_MAX_SIZE;
+		final int numText = determineNumPages(textSize);
+		
+		int pageSize;
+		int remainingMemToAlloc = textSize;
+		
+		for(int i = 0; i < numText; i++) {
+			if(remainingMemToAlloc - maxPageSize > 0) {
+				pageSize = maxPageSize;
+			} else {
+				pageSize = remainingMemToAlloc;	
+			}
+			
+			remainingMemToAlloc -= pageSize;
+			
+			System.out.println("Put text page into memory of size " + pageSize +", remaining memory: " + remainingMemToAlloc);
+			
+			textPages.add(new TextPage(i, pageSize, this));
+		}
+		
+	}
+	
+/*	public void allocatePagesToMemory(final MemoryState memState) {
+		for(TextPage tp : textPages)
+			memory.allocatePage(tp);
+				
+		for(DataPage dp : dataPages)
+			memory.allocatePage(dp);
+	}*/
 	
 	public int determineNumTextPages() {
 		return determineNumPages(textSize);
@@ -129,5 +177,10 @@ public class Process extends Model {
 		// delete ProcessPageTableState
 		
 		delete();
+	}
+	
+	@Override
+	public String toString() {
+		return "Process " + procId;
 	}
 }

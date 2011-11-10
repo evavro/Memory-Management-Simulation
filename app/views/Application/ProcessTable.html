@@ -1,33 +1,18 @@
+<span id="table_label">${memory.getFrameTableTitle()}</span>
 
 <table id="process_table" align="center">
+	#{list items:memory.getFrameTable(), as:'frameContents'}
 	<tr>
-		<td class="pt_frame_label">Frame 1</td>
-		<td class="pt_frame">Something</td>
+		<td class="pt_frame_label">Frame ${frameContents_index}</td>
+		<td class="pt_frame">${frameContents}</td>
 	</tr>
-	<tr>
-		<td class="pt_frame_label">Frame 2</td>
-		<td class="pt_frame">Something</td>
-	</tr>
-	<tr>
-		<td class="pt_frame_label">Frame 3</td>
-		<td class="pt_frame">Something</td>
-	</tr>
-	<tr>
-		<td class="pt_frame_label">Frame 4</td>
-		<td class="pt_frame">Something</td>
-	</tr>
-	<tr>
-		<td class="pt_frame_label">Frame 5</td>
-		<td class="pt_frame">Something</td>
-	</tr>
-	<tr>
-		<td class="pt_frame_label">Frame 6</td>
-		<td class="pt_frame">Something</td>
-	</tr>
-	<tr>
-		<td class="pt_frame_label">Frame 7</td>
-		<td class="pt_frame">Something</td>
-	</tr>
+	#{/list}
 </table>
 
-<input type="button" disabled="true" value="<  Previous State" /> <input type="button" value="Next State >" />
+<div id="latest_action">
+	State: <i>${memory.getActionDescription()}</i>
+</div>
+
+<p>
+<input type="button" id="next" onClick="goNext();" value="Next State >" />
+</p>

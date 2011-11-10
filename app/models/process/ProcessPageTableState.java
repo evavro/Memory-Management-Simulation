@@ -21,13 +21,6 @@ public class ProcessPageTableState extends Model { //extends MemoryState {
 	@ManyToOne
 	public ProcessPageTable table; // Page table
 	
-	/*// Pages at the current state of the process table
-	@OneToMany
-	public List<TextPage> textPages = new ArrayList<TextPage>();
-	
-	@OneToMany
-	public List<DataPage> dataPages = new ArrayList<DataPage>();*/
-	
 	// Keeps track of how the pages are allocated to frames in memory at a given state
 	@Column(insertable=false, updatable=false) // this will probably be conflictive..
 	public HashMap<Frame, Page> pageMap = new HashMap<Frame, Page>();

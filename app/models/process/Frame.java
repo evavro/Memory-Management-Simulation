@@ -9,10 +9,11 @@ import play.db.jpa.Model;
 @Entity
 public class Frame extends Model {
 	
-	// NOT the entity id
 	public int frameId;
 	
 	public Frame(final int frameId) {
 		this.frameId = frameId;
+		
+		save();
 	}
 }
