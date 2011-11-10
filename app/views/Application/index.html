@@ -10,7 +10,7 @@
 			success: showResponse
 		}); 
 		
-		$('#next').ajaxForm({
+		$('#next_action').ajaxForm({
 			target: '#process_table_container',
 			resetForm: true,
 			success: showResponse
@@ -29,11 +29,10 @@
 	
 	function goNext() {
 		 $("#process_table_container")  
-	        .html(ajax_load)  
+	       // .html("Loading...")  
 	        .load("@{ProcessController.nextAction()}", null, function(responseText){  
-	            alert("Response:\n" + responseText);  
+	           // alert("Response:\n" + responseText);  
 	        });  
-		//$("#process_table_container").html(ajax_load).load("@{ProcessController.nextAction()}");
 	}
 	
 	function showResponse(responseText, statusText, xhr, $form)  { 	 

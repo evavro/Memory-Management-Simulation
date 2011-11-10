@@ -38,6 +38,8 @@ public class MemoryManager extends Model
 	
 	public String currentActionDescription = "";
 	
+	// TODO: IF TIME, CREATE 8 EmptyPage objects, save them to a Stack and pop them off one by one instead of potentially creating hundreds of these
+	
 	// The number of frames that can fit into physical memory
 	public int frames = 0;
 	
@@ -65,10 +67,8 @@ public class MemoryManager extends Model
 		save();
 		
 		createFrames();
-		//save(); // GREAT SUCCESS, JUST LOOK FOR THINGS IN createProcesses THAT DON'T GET SAVED AND WE'RE GOOD TO GO
 		createProcesses();
 		
-
 		// Start processing the first action
 		handleNextAction();
 	}
@@ -118,13 +118,9 @@ public class MemoryManager extends Model
 		if(process != null) {
 			System.out.println("Current action " + currentAction + " - Process: " + process + " - Action: " + action);
 				
-				// Relate the manager with a memory state
-				//memoryStates.add(memState);
-				
-				// go through each line, read what the action is
-				// 		go through each process -> process table
-				//				determine the frame/page map at the current action for a process and save it to a ProcessPageTableState
-				
+			// Relate the manager with a memory state
+			//memoryStates.add(memState);
+
 			switch(determineEvent(action)) {
 				case Arrive:
 					currentActionDescription = String.format("%s arriving. Text page size = %s, Data page size = %s", process, process.textSize, process.dataSize);
@@ -153,15 +149,11 @@ public class MemoryManager extends Model
 		for(Page p : pages)
 			allocateProcessPage(p);
 				
-		//em.persist(this);
-				
 		/*System.out.println("\n\n&&&& Just finished putting process " + process + " into memory. Here's the table:");
 				
 		for(Map.Entry<Frame, Page> entry : pageMap.entrySet()) {
 			System.out.println("Frame " + entry.getKey() + " : Page " + entry.getValue());
 		}*/
-				
-		
 	}
 	
 	public void terminateProcess(final Process process) {
@@ -174,43 +166,6 @@ public class MemoryManager extends Model
 				pageMap.put(frame, emptyPage);
 		}
 	}
-		
-	public EventType determineEvent(final String line) throws Exception
-	{
-		final String[] chunks = splitData(line);
-		final int chunkSize = chunks.length;
-		
-		switch(chunkSize)
-		{
-			case 3:
-				return EventType.Arrive;
-			case 2:
-				return EventType.Exit;
-			default:
-				throw new Exception("File format error");
-		}
-	}
-		
-	public String[] splitData(final String line)
-	{
-		return line.split(" ");
-	}
-		
-	public Integer[] splitDataToInts(final String line)
-	{
-		String[] chunks = splitData(line);
-		Integer[] intChunks = new Integer[chunks.length];
-			
-		for(int i = 0; i < chunks.length; i++) {
-			try {
-				intChunks[i] = Integer.parseInt(chunks[i]);
-			} catch (NumberFormatException e) {
-				intChunks[i] = -1;
-			}
-		}
-			
-		return intChunks;
-	}
 	
 	// Memory Actions
 	
@@ -221,15 +176,10 @@ public class MemoryManager extends Model
 		final Frame largestFrame = getLargestFrame();
 		final int freeMemInFrame = getFreeBytesInFrame(largestFrame);
 		
-		System.out.println("ENTERING PAGE MAP: " + pageMap);
 		System.out.println("Allocating page (" + page + ") @ largest frame: " + largestFrame);
 		
 		if(page.getSize() <= freeMemInFrame)
 			pageMap.put(largestFrame, page);
-		
-		//em.persist(this);
-		
-		System.out.println("OKAY, HERE'S THE NEW MAP:\n" + pageMap);
 	}
 	
 	// Find the largest frame in memory using the worst-fit algorithm)
@@ -272,6 +222,41 @@ public class MemoryManager extends Model
 		return true;
 	}
 	
+	// Miscellaneous data manipulation
+	
+	public EventType determineEvent(final String line) throws Exception {
+		final String[] chunks = splitData(line);
+		final int chunkSize = chunks.length;
+		
+		switch(chunkSize) {
+			case 3:
+				return EventType.Arrive;
+			case 2:
+				return EventType.Exit;
+			default:
+				throw new Exception("File format error");
+		}
+	}
+		
+	public String[] splitData(final String line) {
+		return line.split(" ");
+	}
+		
+	public Integer[] splitDataToInts(final String line) {
+		String[] chunks = splitData(line);
+		Integer[] intChunks = new Integer[chunks.length];
+			
+		for(int i = 0; i < chunks.length; i++) {
+			try {
+				intChunks[i] = Integer.parseInt(chunks[i]);
+			} catch (NumberFormatException e) {
+				intChunks[i] = -1;
+			}
+		}
+			
+		return intChunks;
+	}
+		
 	// HTML / Template Methods
 	
 	public String getFrameTableTitle() {
@@ -294,7 +279,7 @@ public class MemoryManager extends Model
 		return framesHTML;
 	}
 	
-	public String getFrameTableHTML() {
+	/*public String getFrameTableHTML() {
 		String table = "<table id=\"process_table\" align=\"center\">";
 		
 		for(Map.Entry<Frame, Page> slot : pageMap.entrySet())
@@ -304,5 +289,5 @@ public class MemoryManager extends Model
 		table += "<input type=\"button\" value=\"Next State >\" />";
 		
 		return table;
-	}
+	}*/
 }
