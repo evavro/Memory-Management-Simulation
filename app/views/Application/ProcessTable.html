@@ -10,11 +10,11 @@
 </table>
 
 <div id="latest_action">
-	State: <i>${memory.getActionDescription()}</i>
+	<b>State</b>: <i>${memory.getActionDescription()}</i>
 </div>
 
 <p>
-#{form @ProcessController.nextAction(), id:'next_action'}
-	<input type="button" onClick="javascript:goNext();" value="Next State >" />
+#{form @Application.nextAction(), id:'next_action'}
+	<input type="button" id="next_action_button" onClick="javascript:goNext();" value="Next State >" />
 #{/}
 </p>

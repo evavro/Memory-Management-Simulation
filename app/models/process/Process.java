@@ -1,5 +1,6 @@
 package models.process;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -7,10 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import models.MemoryManager;
-import models.MemoryState;
 import play.db.jpa.Model;
 
 //This represents what would be commonly known as a PCB (Process Control Block) in an operating system's kernel
@@ -30,23 +29,15 @@ public class Process extends Model {
 	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	public MemoryManager memory;
 	
-	/*@OneToOne(fetch = FetchType.LAZY, 
-			   cascade = { CascadeType.PERSIST,
-            			   CascadeType.MERGE,
-            			   CascadeType.REMOVE })
-	public ProcessPageTable table; 	// a.k.a. ProcessPageTable*/
-	
-	// These may not be necessary...
+	// Associated text page memory segments
 	@OneToMany(fetch = FetchType.LAZY, 
 			   cascade = { CascadeType.PERSIST,
-            			   //CascadeType.MERGE,
             			   CascadeType.REMOVE })
 	public List<TextPage> textPages;
 	
-	// These may not be necessary...
+	// Associated data page memory segments
 	@OneToMany(fetch = FetchType.LAZY, 
 			   cascade = { CascadeType.PERSIST,
-            			   //CascadeType.MERGE,
             			   CascadeType.REMOVE })
 	public List<DataPage> dataPages;
 	
@@ -60,16 +51,8 @@ public class Process extends Model {
 		this.dataSize = dataSize;
 		this.memory = memory;
 		
-		//System.out.println("Process " + procId + ": - textSize: " + textSize + ", dataSize: " + dataSize);
-		
 		// Save this process into JPA so that we can reference it in the ProcessPageTable
 		save();
-		
-		// Create the page table for this process
-		//this.table = new ProcessPageTable(this);
-		
-		// Save this process again with the newly created process page table
-		//save();
 		
 		createPages();
 	}
@@ -78,34 +61,14 @@ public class Process extends Model {
 	private void createPages() throws Exception {
 		System.out.println(String.format("Process %s: Number text pages: %s, Number data pages: %s", procId, determineNumPages(textSize), determineNumPages(dataSize)));
 		
-		createDataPages();
 		createTextPages();
+		createDataPages();
 		
 		save();
 	}
 	
-	public void createDataPages() throws Exception {
-		final int maxPageSize = Page.PAGE_MAX_SIZE;
-		final int numData = determineNumPages(dataSize);
-		
-		int pageSize;
-		int remainingMemToAlloc = dataSize;
-		
-		for(int i = 0; i < numData; i++) {
-			if(remainingMemToAlloc - maxPageSize > 0) {
-				pageSize = maxPageSize;
-			} else {
-				pageSize = remainingMemToAlloc;	
-			}
-			
-			remainingMemToAlloc -= pageSize;
-			
-			System.out.println("Create data page of size " + pageSize +", remaining memory: " + remainingMemToAlloc);
-			
-			dataPages.add(new DataPage(i, pageSize, this));
-		}
-	}
 	
+	// Create the text page memory segments, but do not allocate them yet!
 	public void createTextPages() throws Exception {
 		final int maxPageSize = Page.PAGE_MAX_SIZE;
 		final int numText = determineNumPages(textSize);
@@ -122,11 +85,29 @@ public class Process extends Model {
 			
 			remainingMemToAlloc -= pageSize;
 			
-			System.out.println("Create text page of size " + pageSize +", remaining memory: " + remainingMemToAlloc);
-			
 			textPages.add(new TextPage(i, pageSize, this));
 		}
-		
+	}
+	
+	// Create the data page memory segments, but do not allocate them yet!
+	public void createDataPages() throws Exception {
+		final int maxPageSize = Page.PAGE_MAX_SIZE;
+		final int numData = determineNumPages(dataSize);
+			
+		int pageSize;
+		int remainingMemToAlloc = dataSize;
+			
+		for(int i = 0; i < numData; i++) {
+			if(remainingMemToAlloc - maxPageSize > 0) {
+				pageSize = maxPageSize;
+			} else {
+				pageSize = remainingMemToAlloc;	
+			}
+				
+			remainingMemToAlloc -= pageSize;
+			
+			dataPages.add(new DataPage(i, pageSize, this));
+		}
 	}
 	
 	public int determineNumTextPages() {
@@ -144,13 +125,7 @@ public class Process extends Model {
 		
 		return mod == 0 ? roughDivide : roughDivide + 1;
 	}
-	
-	public void updateProcessState() {
-		// save table
-		// 		save states in table
-		// save this
-	}
-	
+
 	public List<Page> getPages() {
 		return Page.find("process=?", this).fetch();
 	}
@@ -163,11 +138,8 @@ public class Process extends Model {
 		return TextPage.find("process=?", this).fetch();
 	}
 	
+	// Unused for now...
 	public void terminate() {
-		// delete all related pages
-		// delete ProcessPageTables
-		// delete ProcessPageTableState
-		
 		delete();
 	}
 	

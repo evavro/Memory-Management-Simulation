@@ -7,16 +7,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 import javax.persistence.Transient;
 
 import models.process.EmptyPage;
 import models.process.Frame;
 import models.process.Page;
 import models.process.Process;
-import play.db.jpa.JPA;
 import play.db.jpa.Model;
 import play.libs.IO;
 
@@ -24,21 +25,22 @@ import play.libs.IO;
 @Entity
 public class MemoryManager extends Model
 {
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY, 
+			   cascade = { CascadeType.PERSIST,
+         			   	   CascadeType.REMOVE })
 	public Map<Integer, Process> processes = new TreeMap<Integer, Process>();
+	
+	// Current mapping of memory frames and pages
+	@OneToMany
+	public Map<Frame, Page> pageMap = new HashMap<Frame, Page>();
 	
 	// List of actions in the file
 	public ArrayList<String> actions;
-	
-	@OneToMany
-	public Map<Frame, Page> pageMap = new HashMap<Frame, Page>();
 	
 	// Current action (memory state) that is being handled (current state)
 	public int currentAction = 0;
 	
 	public String currentActionDescription = "";
-	
-	// TODO: IF TIME, CREATE 8 EmptyPage objects, save them to a Stack and pop them off one by one instead of potentially creating hundreds of these
 	
 	// The number of frames that can fit into physical memory
 	public int frames = 0;
@@ -52,9 +54,6 @@ public class MemoryManager extends Model
 	
 	// The events that a process can do in memory
 	public enum EventType {Arrive, Exit}
-	
-	@Transient
-	private EntityManager em = JPA.em();
 	
 	public MemoryManager(final File file) throws Exception {
 		
@@ -107,19 +106,17 @@ public class MemoryManager extends Model
 		}
 		
 		save();
-		
-		System.out.println("Processes: " + processes.size());
 	}
 	
+	// Interpret the next action in the file
 	public void handleNextAction() throws Exception {
 		String action = actions.get(currentAction);
+		
+		// Get the relevant process by id
 		Process process = processes.get(splitDataToInts(action)[0]);
 		
 		if(process != null) {
 			System.out.println("Current action " + currentAction + " - Process: " + process + " - Action: " + action);
-				
-			// Relate the manager with a memory state
-			//memoryStates.add(memState);
 
 			switch(determineEvent(action)) {
 				case Arrive:
@@ -136,26 +133,20 @@ public class MemoryManager extends Model
 			}
 				
 			currentAction++;
-			
-			//em.persist(this);
 		}
 		
 		save();
 	}
 	
+	// Places the pages of a process into frames
 	public void putProcessInMemory(final Process process) {
 		List<Page> pages = process.getPages();
 		
 		for(Page p : pages)
 			allocateProcessPage(p);
-				
-		/*System.out.println("\n\n&&&& Just finished putting process " + process + " into memory. Here's the table:");
-				
-		for(Map.Entry<Frame, Page> entry : pageMap.entrySet()) {
-			System.out.println("Frame " + entry.getKey() + " : Page " + entry.getValue());
-		}*/
 	}
 	
+	// Terminates a process by filling the relevant frames with emnpty pages
 	public void terminateProcess(final Process process) {
 		for (Map.Entry<Frame, Page> slot : pageMap.entrySet()) {
 			Frame frame = slot.getKey();
@@ -168,8 +159,6 @@ public class MemoryManager extends Model
 	}
 	
 	// Memory Actions
-	
-	// **** Definitely neeed to build this map from the individual process pcbs....
 	
 	// Places a page into memory using the worst-fit algorithm
 	public void allocateProcessPage(final Page page) {
@@ -207,6 +196,7 @@ public class MemoryManager extends Model
 		return largestFrame;
 	}
 	
+	// Gets the amount of free memory that a frame has
 	public int getFreeBytesInFrame(final Frame frame) {
 		final Page matchedPage = pageMap.get(frame);
 		
@@ -267,6 +257,18 @@ public class MemoryManager extends Model
 		return currentActionDescription;
 	}
 	
+	/*public List<ProcessPageTable> getProcessPageTables() {
+		List<ProcessPageTable> pts = new ArrayList<ProcessPageTable>();
+		
+		for(Map.Entry<Integer, Process> p : processes.entrySet()) {
+			Map<Frame, Page> memMap = new HashMap<Frame, Page>();
+			Process process = p.getValue();
+			List<Page> pages = process.getPages();
+			
+			memMap.put(pageMap.g, value)
+		}
+	}*/
+	
 	public List<String> getFrameTable() {
 		List<String> framesHTML = new ArrayList<String>(frames);
 		
@@ -279,15 +281,14 @@ public class MemoryManager extends Model
 		return framesHTML;
 	}
 	
-	/*public String getFrameTableHTML() {
-		String table = "<table id=\"process_table\" align=\"center\">";
-		
-		for(Map.Entry<Frame, Page> slot : pageMap.entrySet())
-			table += String.format("<tr><td class=\"pt_frame_label\">Frame %s</td><td class=\"pt_frame\">%s</td></tr>", slot.getKey(), slot.getValue());
-
-		table += "</table>";
-		table += "<input type=\"button\" value=\"Next State >\" />";
-		
-		return table;
-	}*/
+	// Death and cleanup
+	
+	@PreRemove
+	public void resetMemory() {
+		delete();
+		/*for(Map.Entry<Integer, Process> proc : processes) {
+			proc.getValue().terminate();
+		}*/
+	}
+	
 }

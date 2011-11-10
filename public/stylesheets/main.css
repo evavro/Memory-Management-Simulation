@@ -7,13 +7,9 @@ body {
  	font-weight: 300;
 }
 
-/*h2 {
-	padding: 0;
-	margin: 0;
-}*/
-
 #container {
 	padding-top: 15px;
+	padding-bottom: 15px;
 	width: 100%;
 	text-align: center;
 }
@@ -33,7 +29,7 @@ body {
 
 #main {
 	width: 50%;
-	padding: 20px 20px 12px 20px;
+	padding: 32px 20px 12px 20px;
 	margin-left: auto;
 	margin-right: auto;
 	border-top: 1px solid #555555;
@@ -83,4 +79,15 @@ body {
 
 #latest_action {
 	font-size: 14px;
+}
+
+/* Other */
+
+#welcome {
+	color: #666666;
+}
+
+#error {
+	background-color: #FF5656;
+	padding: 24px 12px 24px 12px;
 }

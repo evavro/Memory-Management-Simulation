@@ -5,7 +5,7 @@ import javax.persistence.ManyToOne;
 
 import play.db.jpa.Model;
 
-// Represents a frame slot in memory
+// Represents a frame slot in memory and nothing more
 @Entity
 public class Frame extends Model {
 	

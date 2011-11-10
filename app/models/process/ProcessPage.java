@@ -16,7 +16,7 @@ public abstract class ProcessPage extends Page {
 	@ManyToOne
 	public Process process;
 	
-	// Create a timestamp for this page so we can use the LRU algorithm
+	// Create a timestamp for this page so we can use the LRU algorithm (eventually :O)
 	public Date timestamp = new Date();
 	
 	public int getFreeMemory() {

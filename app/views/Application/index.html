@@ -17,28 +17,17 @@
 		}); 
 	}); 
 	
-	/*function goNext() {
-		$('#process_table_container').ajax({
-			  url: "@{ProcessController.nextAction()}",
-			  context: document.body,
-			  success: function(){
-			   	 alert('All done nigga');
-			  }
-		});
-	}*/
-	
 	function goNext() {
-		 $("#process_table_container")  
-	       // .html("Loading...")  
-	        .load("@{ProcessController.nextAction()}", null, function(responseText){  
+		$("#next_action_button").attr("disabled", "disabled");
+		$("#process_table_container")  
+	        .load("@{Application.nextAction()}", null, function(responseText){  
 	           // alert("Response:\n" + responseText);  
+	           $("#next_action_button").attr("disabled", "");
 	        });  
 	}
 	
 	function showResponse(responseText, statusText, xhr, $form)  { 	 
-	    // statusText
-	    // responseText
-	    // fade in the div with fancy jquery
+	    // I was going to do some fancy stuff with jQuery!
 	} 
 </script> 
 
@@ -47,9 +36,8 @@
 		<h2>Linux Memory Management Simulation</h2f>
 	</div>
 	<div id="main">
-		
 		<div id="process_table_container" align="center">
-			<!--  Create a "Next" button that steps through the lines of the simulation! -->
+			<span id="welcome">Select a file to start the simulation</span>
 		</div>
 		<p>
 			#{form @Application.uploadFile(), id:'submit_file', enctype:'multipart/form-data'}
