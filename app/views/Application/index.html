@@ -10,12 +10,14 @@
 			success: showResponse
 		}); 
 		
-		/*$('#next').click(function() {
-			alert('going to the next thing!');
-		});*/
+		$('#next').ajaxForm({
+			target: '#process_table_container',
+			resetForm: true,
+			success: showResponse
+		}); 
 	}); 
 	
-	function goNext() {
+	/*function goNext() {
 		$('#process_table_container').ajax({
 			  url: "@{ProcessController.nextAction()}",
 			  context: document.body,
@@ -23,6 +25,15 @@
 			   	 alert('All done nigga');
 			  }
 		});
+	}*/
+	
+	function goNext() {
+		 $("#process_table_container")  
+	        .html(ajax_load)  
+	        .load("@{ProcessController.nextAction()}", null, function(responseText){  
+	            alert("Response:\n" + responseText);  
+	        });  
+		//$("#process_table_container").html(ajax_load).load("@{ProcessController.nextAction()}");
 	}
 	
 	function showResponse(responseText, statusText, xhr, $form)  { 	 

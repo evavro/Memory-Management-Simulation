@@ -23,9 +23,6 @@ public class Application extends Controller {
 		
 		System.out.println(String.format("Uploaded and processed %s", file.getName()));
 		
-		//List<String> table = memory.getFrameTable();
-		
-		//render("Application/ProcessTable.html", memory);
 		render("Application/ProcessTable.html", memory);
 	}
 	

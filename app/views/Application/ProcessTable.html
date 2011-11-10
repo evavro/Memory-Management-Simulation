@@ -14,5 +14,7 @@
 </div>
 
 <p>
-<input type="button" id="next" onClick="goNext();" value="Next State >" />
+#{form @ProcessController.nextAction(), id:'next', enctype:'multipart/form-data'}
+	<input type="submit" id="next" value="Next State >" />
+#{/}
 </p>

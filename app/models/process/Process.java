@@ -27,26 +27,26 @@ public class Process extends Model {
 	public int dataSize;
 	
 	// The RAM that this process is contained in (the entire physical object)
-	@ManyToOne
+	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	public MemoryManager memory;
 	
-	@OneToOne(fetch = FetchType.LAZY, 
+	/*@OneToOne(fetch = FetchType.LAZY, 
 			   cascade = { CascadeType.PERSIST,
             			   CascadeType.MERGE,
             			   CascadeType.REMOVE })
-	public ProcessPageTable table; 	// a.k.a. ProcessPageTable
+	public ProcessPageTable table; 	// a.k.a. ProcessPageTable*/
 	
 	// These may not be necessary...
 	@OneToMany(fetch = FetchType.LAZY, 
 			   cascade = { CascadeType.PERSIST,
-            			   CascadeType.MERGE,
+            			   //CascadeType.MERGE,
             			   CascadeType.REMOVE })
 	public List<TextPage> textPages;
 	
 	// These may not be necessary...
 	@OneToMany(fetch = FetchType.LAZY, 
 			   cascade = { CascadeType.PERSIST,
-            			   CascadeType.MERGE,
+            			   //CascadeType.MERGE,
             			   CascadeType.REMOVE })
 	public List<DataPage> dataPages;
 	
@@ -60,16 +60,16 @@ public class Process extends Model {
 		this.dataSize = dataSize;
 		this.memory = memory;
 		
-		System.out.println("Process " + procId + ": - textSize: " + textSize + ", dataSize: " + dataSize);
+		//System.out.println("Process " + procId + ": - textSize: " + textSize + ", dataSize: " + dataSize);
 		
 		// Save this process into JPA so that we can reference it in the ProcessPageTable
 		save();
 		
 		// Create the page table for this process
-		this.table = new ProcessPageTable(this);
+		//this.table = new ProcessPageTable(this);
 		
 		// Save this process again with the newly created process page table
-		save();
+		//save();
 		
 		createPages();
 	}
@@ -100,7 +100,7 @@ public class Process extends Model {
 			
 			remainingMemToAlloc -= pageSize;
 			
-			System.out.println("Put data page into memory of size " + pageSize +", remaining memory: " + remainingMemToAlloc);
+			System.out.println("Create data page of size " + pageSize +", remaining memory: " + remainingMemToAlloc);
 			
 			dataPages.add(new DataPage(i, pageSize, this));
 		}
@@ -122,20 +122,12 @@ public class Process extends Model {
 			
 			remainingMemToAlloc -= pageSize;
 			
-			System.out.println("Put text page into memory of size " + pageSize +", remaining memory: " + remainingMemToAlloc);
+			System.out.println("Create text page of size " + pageSize +", remaining memory: " + remainingMemToAlloc);
 			
 			textPages.add(new TextPage(i, pageSize, this));
 		}
 		
 	}
-	
-/*	public void allocatePagesToMemory(final MemoryState memState) {
-		for(TextPage tp : textPages)
-			memory.allocatePage(tp);
-				
-		for(DataPage dp : dataPages)
-			memory.allocatePage(dp);
-	}*/
 	
 	public int determineNumTextPages() {
 		return determineNumPages(textSize);

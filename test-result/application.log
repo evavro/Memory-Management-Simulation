@@ -1,5 +1,5 @@
-10 Nov 2011 03:52:24,976 INFO  ~ Starting /home/erik/Documents/School/Operating Systems/Projects/Memory-Management-Simulation
-10 Nov 2011 03:52:25,355 WARN  ~ You're running Play! in DEV mode
-10 Nov 2011 03:52:25,411 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
-10 Nov 2011 03:52:26,665 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
-10 Nov 2011 03:52:27,353 INFO  ~ Application 'Wolf Memory Manager' is now started !
+10 Nov 2011 05:28:51,476 INFO  ~ Starting /home/erik/Documents/School/Operating Systems/Projects/Memory-Management-Simulation
+10 Nov 2011 05:28:51,851 WARN  ~ You're running Play! in DEV mode
+10 Nov 2011 05:28:51,907 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+10 Nov 2011 05:29:01,379 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+10 Nov 2011 05:29:02,056 INFO  ~ Application 'Wolf Memory Manager' is now started !
